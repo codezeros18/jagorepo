@@ -1,0 +1,22 @@
+{
+  "name": "demo-safe-project",
+  "version": "1.0.0",
+  "description": "Contoh project dengan dependency yang sudah diperbarui — untuk demo JagaRepo",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "lodash": "4.17.21",
+    "axios": "1.8.4",
+    "minimist": "1.2.8",
+    "express": "4.21.2",
+    "react": "18.3.1",
+    "dotenv": "16.4.7"
+  },
+  "devDependencies": {
+    "typescript": "5.8.3",
+    "nodemon": "3.1.9"
+  }
+}

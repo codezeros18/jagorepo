@@ -1,0 +1,31 @@
+# JagaRepo Docs Package Manifest
+
+- `README.md`
+- `docs/00_PROJECT_CONTEXT.md`
+- `docs/01_PRODUCT_REQUIREMENTS.md`
+- `docs/02_TECHNICAL_ARCHITECTURE.md`
+- `docs/03_DEMO_PRODUCTION_SCOPE.md`
+- `docs/04_SPRINT_TASK_PLANNING.md`
+- `docs/05_TASK_EXECUTION_RULES.md`
+- `docs/06_ACCEPTANCE_CRITERIA.md`
+- `docs/07_DEMO_SCRIPT.md`
+- `docs/08_TESTING_CHECKLIST.md`
+- `docs/09_DEPLOYMENT_GUIDE.md`
+- `docs/10_FINAL_SUBMISSION_CHECKLIST.md`
+- `docs/README.md`
+- `docs/tasks/TASK_00_REPO_AUDIT.md`
+- `docs/tasks/TASK_01_PROJECT_SETUP.md`
+- `docs/tasks/TASK_02_LANDING_PAGE.md`
+- `docs/tasks/TASK_03_SCAN_PAGE_UI.md`
+- `docs/tasks/TASK_04_FILE_UPLOAD_AND_VALIDATION.md`
+- `docs/tasks/TASK_05_DEPENDENCY_PARSER.md`
+- `docs/tasks/TASK_06_OSV_API_INTEGRATION.md`
+- `docs/tasks/TASK_07_RISK_SCORING_ENGINE.md`
+- `docs/tasks/TASK_08_RESULT_DASHBOARD.md`
+- `docs/tasks/TASK_09_EXPLANATION_AND_RECOMMENDATION.md`
+- `docs/tasks/TASK_10_PDF_REPORT_GENERATOR.md`
+- `docs/tasks/TASK_11_DEMO_SAMPLE_PROJECT.md`
+- `docs/tasks/TASK_12_RESPONSIVE_AND_UI_POLISH.md`
+- `docs/tasks/TASK_13_TESTING_AND_HARDENING.md`
+- `docs/tasks/TASK_14_DEPLOYMENT_PREPARATION.md`
+- `docs/tasks/TASK_15_FINAL_DEMO_PACKAGE.md`

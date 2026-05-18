@@ -1,0 +1,173 @@
+{
+  "accepted": true,
+  "fileName": "vulnerable-package.json",
+  "ecosystem": "npm",
+  "fileSize": 512,
+  "hasLockfile": false,
+  "warnings": [],
+  "scan": {
+    "scanId": "demo-high-risk-2026",
+    "scannedAt": "2026-05-18T10:00:00.000Z",
+    "sourceFile": "vulnerable-package.json",
+    "totalDependencies": 8,
+    "vulnerableDependencies": 3,
+    "overallRiskScore": 82,
+    "overallRiskCategory": "Critical",
+    "usedMock": true,
+    "findings": [
+      {
+        "packageName": "lodash",
+        "version": "4.17.20",
+        "ecosystem": "npm",
+        "riskScore": 100,
+        "riskCategory": "Critical",
+        "confidence": "High",
+        "reasons": [
+          "Ditemukan 2 kerentanan High (tinggi) dari database OSV. Kerentanan High berpotensi menyebabkan kebocoran data, bypass autentikasi, atau eksekusi kode tidak sah jika berhasil dieksploitasi.",
+          "Proyek ini tidak memiliki lockfile (package-lock.json / yarn.lock / requirements.lock). Tanpa lockfile, versi dependency tidak terkunci dan bisa berubah sewaktu-waktu saat install."
+        ],
+        "vulnerabilities": [
+          {
+            "id": "GHSA-jf85-cpcp-j695",
+            "summary": "Prototype Pollution in lodash — attacker dapat memodifikasi Object.prototype melalui fungsi merge atau set.",
+            "severity": "HIGH",
+            "publishedAt": "2020-08-03T00:00:00Z",
+            "url": "https://github.com/advisories/GHSA-jf85-cpcp-j695"
+          },
+          {
+            "id": "GHSA-29mw-wpgm-hmr9",
+            "summary": "ReDoS vulnerability in lodash — ekspresi regex tidak aman dapat menyebabkan CPU spike (Denial of Service).",
+            "severity": "HIGH",
+            "publishedAt": "2021-01-06T00:00:00Z",
+            "url": "https://github.com/advisories/GHSA-29mw-wpgm-hmr9"
+          }
+        ],
+        "recommendation": "Segera perbarui \"lodash\" ke versi terbaru yang sudah dipatch. Jalankan: `npm update lodash`, lalu cek CHANGELOG atau GitHub Advisory untuk memastikan versi baru menutupi kerentanan ini. Jika belum ada patch yang tersedia, pertimbangkan untuk menonaktifkan fitur yang bergantung pada package ini sementara menunggu pembaruan.",
+        "explanationId": "finding-critical"
+      },
+      {
+        "packageName": "axios",
+        "version": "0.21.1",
+        "ecosystem": "npm",
+        "riskScore": 60,
+        "riskCategory": "High",
+        "confidence": "High",
+        "reasons": [
+          "Ditemukan satu kerentanan High (tinggi) dari database OSV. Kerentanan High berpotensi menyebabkan kebocoran data, bypass autentikasi, atau eksekusi kode tidak sah jika berhasil dieksploitasi.",
+          "Ditemukan satu kerentanan Medium (sedang) dari database OSV. Kerentanan Medium perlu ditangani — bisa dieksploitasi dalam kondisi tertentu dan berisiko eskalasi jika dikombinasikan dengan kerentanan lain."
+        ],
+        "vulnerabilities": [
+          {
+            "id": "GHSA-wf5p-g6vw-rhxx",
+            "summary": "axios Cross-Site Request Forgery (CSRF) — versi ini rentan terhadap CSRF attack yang memungkinkan penyerang mengirim request atas nama pengguna.",
+            "severity": "HIGH",
+            "publishedAt": "2023-11-08T00:00:00Z",
+            "url": "https://github.com/advisories/GHSA-wf5p-g6vw-rhxx"
+          },
+          {
+            "id": "GHSA-cxjh-pqwp-8mfp",
+            "summary": "follow-redirects URL Redirect — axios bergantung pada library ini yang memiliki vulnerability redirect yang dapat membocorkan authorization header.",
+            "severity": "MEDIUM",
+            "publishedAt": "2023-02-16T00:00:00Z",
+            "url": "https://github.com/advisories/GHSA-cxjh-pqwp-8mfp"
+          }
+        ],
+        "recommendation": "Perbarui \"axios\" sesegera mungkin. Jalankan: `npm update axios` dan pastikan versi baru sudah mencakup perbaikan keamanan yang relevan. Aktifkan Dependabot atau Renovate Bot di repositori kamu agar pembaruan keamanan terdeteksi otomatis.",
+        "explanationId": "finding-high"
+      },
+      {
+        "packageName": "minimist",
+        "version": "1.2.5",
+        "ecosystem": "npm",
+        "riskScore": 15,
+        "riskCategory": "Medium",
+        "confidence": "High",
+        "reasons": [
+          "Ditemukan satu kerentanan Medium (sedang) dari database OSV. Kerentanan Medium perlu ditangani — bisa dieksploitasi dalam kondisi tertentu dan berisiko eskalasi jika dikombinasikan dengan kerentanan lain."
+        ],
+        "vulnerabilities": [
+          {
+            "id": "GHSA-vh95-rmgr-6w4m",
+            "summary": "Prototype Pollution in minimist — memungkinkan attacker memodifikasi properti objek built-in melalui argumen yang dibuat khusus.",
+            "severity": "MEDIUM",
+            "publishedAt": "2020-03-11T00:00:00Z",
+            "url": "https://github.com/advisories/GHSA-vh95-rmgr-6w4m"
+          }
+        ],
+        "recommendation": "Jadwalkan pembaruan \"minimist\" dalam siklus deployment berikutnya. Jalankan: `npm update minimist` dan uji fungsionalitas setelah update. Aktifkan Dependabot di GitHub (Settings → Security → Dependabot alerts) untuk pemantauan berkelanjutan.",
+        "explanationId": "finding-medium"
+      },
+      {
+        "packageName": "express",
+        "version": "4.18.2",
+        "ecosystem": "npm",
+        "riskScore": 0,
+        "riskCategory": "Low",
+        "confidence": "Medium",
+        "reasons": [
+          "Tidak ada vulnerability yang ditemukan di database OSV untuk versi ini. Package ini tampak aman berdasarkan data yang tersedia saat ini."
+        ],
+        "vulnerabilities": [],
+        "recommendation": "Package \"express\" tidak memiliki vulnerability yang diketahui pada versi ini. Tetap pantau pembaruan secara berkala — rekomendasi umum adalah selalu upgrade ke minor/patch terbaru.",
+        "explanationId": "finding-low"
+      },
+      {
+        "packageName": "react",
+        "version": "18.2.0",
+        "ecosystem": "npm",
+        "riskScore": 0,
+        "riskCategory": "Low",
+        "confidence": "Medium",
+        "reasons": [
+          "Tidak ada vulnerability yang ditemukan di database OSV untuk versi ini. Package ini tampak aman berdasarkan data yang tersedia saat ini."
+        ],
+        "vulnerabilities": [],
+        "recommendation": "Package \"react\" tidak memiliki vulnerability yang diketahui pada versi ini. Tetap pantau pembaruan secara berkala — rekomendasi umum adalah selalu upgrade ke minor/patch terbaru.",
+        "explanationId": "finding-low"
+      },
+      {
+        "packageName": "dotenv",
+        "version": "16.0.0",
+        "ecosystem": "npm",
+        "riskScore": 0,
+        "riskCategory": "Low",
+        "confidence": "Medium",
+        "reasons": [
+          "Tidak ada vulnerability yang ditemukan di database OSV untuk versi ini. Package ini tampak aman berdasarkan data yang tersedia saat ini."
+        ],
+        "vulnerabilities": [],
+        "recommendation": "Package \"dotenv\" tidak memiliki vulnerability yang diketahui pada versi ini. Tetap pantau pembaruan secara berkala — rekomendasi umum adalah selalu upgrade ke minor/patch terbaru.",
+        "explanationId": "finding-low"
+      },
+      {
+        "packageName": "typescript",
+        "version": "5.0.0",
+        "ecosystem": "npm",
+        "riskScore": 0,
+        "riskCategory": "Low",
+        "confidence": "Medium",
+        "reasons": [
+          "Tidak ada vulnerability yang ditemukan di database OSV untuk versi ini. Package ini tampak aman berdasarkan data yang tersedia saat ini."
+        ],
+        "vulnerabilities": [],
+        "recommendation": "Package \"typescript\" tidak memiliki vulnerability yang diketahui pada versi ini. Tetap pantau pembaruan secara berkala — rekomendasi umum adalah selalu upgrade ke minor/patch terbaru.",
+        "explanationId": "finding-low"
+      },
+      {
+        "packageName": "nodemon",
+        "version": "3.0.0",
+        "ecosystem": "npm",
+        "riskScore": 0,
+        "riskCategory": "Low",
+        "confidence": "Medium",
+        "reasons": [
+          "Tidak ada vulnerability yang ditemukan di database OSV untuk versi ini. Package ini tampak aman berdasarkan data yang tersedia saat ini."
+        ],
+        "vulnerabilities": [],
+        "recommendation": "Package \"nodemon\" tidak memiliki vulnerability yang diketahui pada versi ini. Tetap pantau pembaruan secara berkala — rekomendasi umum adalah selalu upgrade ke minor/patch terbaru.",
+        "explanationId": "finding-low"
+      }
+    ]
+  },
+  "message": "vulnerable-package.json berhasil di-scan (data demo). 8 dependency diperiksa, 3 memiliki vulnerability yang diketahui. Risk: Critical."
+}

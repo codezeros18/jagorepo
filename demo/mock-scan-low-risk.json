@@ -1,0 +1,133 @@
+{
+  "accepted": true,
+  "fileName": "safe-package.json",
+  "ecosystem": "npm",
+  "fileSize": 498,
+  "hasLockfile": false,
+  "warnings": [],
+  "scan": {
+    "scanId": "demo-low-risk-2026",
+    "scannedAt": "2026-05-18T10:05:00.000Z",
+    "sourceFile": "safe-package.json",
+    "totalDependencies": 8,
+    "vulnerableDependencies": 0,
+    "overallRiskScore": 0,
+    "overallRiskCategory": "Low",
+    "usedMock": true,
+    "findings": [
+      {
+        "packageName": "lodash",
+        "version": "4.17.21",
+        "ecosystem": "npm",
+        "riskScore": 0,
+        "riskCategory": "Low",
+        "confidence": "Medium",
+        "reasons": [
+          "Tidak ada vulnerability yang ditemukan di database OSV untuk versi ini. Package ini tampak aman berdasarkan data yang tersedia saat ini."
+        ],
+        "vulnerabilities": [],
+        "recommendation": "Package \"lodash\" tidak memiliki vulnerability yang diketahui pada versi ini. Tetap pantau pembaruan secara berkala — rekomendasi umum adalah selalu upgrade ke minor/patch terbaru.",
+        "explanationId": "finding-low"
+      },
+      {
+        "packageName": "axios",
+        "version": "1.7.2",
+        "ecosystem": "npm",
+        "riskScore": 0,
+        "riskCategory": "Low",
+        "confidence": "Medium",
+        "reasons": [
+          "Tidak ada vulnerability yang ditemukan di database OSV untuk versi ini. Package ini tampak aman berdasarkan data yang tersedia saat ini."
+        ],
+        "vulnerabilities": [],
+        "recommendation": "Package \"axios\" tidak memiliki vulnerability yang diketahui pada versi ini. Tetap pantau pembaruan secara berkala — rekomendasi umum adalah selalu upgrade ke minor/patch terbaru.",
+        "explanationId": "finding-low"
+      },
+      {
+        "packageName": "minimist",
+        "version": "1.2.8",
+        "ecosystem": "npm",
+        "riskScore": 0,
+        "riskCategory": "Low",
+        "confidence": "Medium",
+        "reasons": [
+          "Tidak ada vulnerability yang ditemukan di database OSV untuk versi ini. Package ini tampak aman berdasarkan data yang tersedia saat ini."
+        ],
+        "vulnerabilities": [],
+        "recommendation": "Package \"minimist\" tidak memiliki vulnerability yang diketahui pada versi ini. Tetap pantau pembaruan secara berkala — rekomendasi umum adalah selalu upgrade ke minor/patch terbaru.",
+        "explanationId": "finding-low"
+      },
+      {
+        "packageName": "express",
+        "version": "4.19.2",
+        "ecosystem": "npm",
+        "riskScore": 0,
+        "riskCategory": "Low",
+        "confidence": "Medium",
+        "reasons": [
+          "Tidak ada vulnerability yang ditemukan di database OSV untuk versi ini. Package ini tampak aman berdasarkan data yang tersedia saat ini."
+        ],
+        "vulnerabilities": [],
+        "recommendation": "Package \"express\" tidak memiliki vulnerability yang diketahui pada versi ini. Tetap pantau pembaruan secara berkala — rekomendasi umum adalah selalu upgrade ke minor/patch terbaru.",
+        "explanationId": "finding-low"
+      },
+      {
+        "packageName": "react",
+        "version": "18.3.1",
+        "ecosystem": "npm",
+        "riskScore": 0,
+        "riskCategory": "Low",
+        "confidence": "Medium",
+        "reasons": [
+          "Tidak ada vulnerability yang ditemukan di database OSV untuk versi ini. Package ini tampak aman berdasarkan data yang tersedia saat ini."
+        ],
+        "vulnerabilities": [],
+        "recommendation": "Package \"react\" tidak memiliki vulnerability yang diketahui pada versi ini. Tetap pantau pembaruan secara berkala — rekomendasi umum adalah selalu upgrade ke minor/patch terbaru.",
+        "explanationId": "finding-low"
+      },
+      {
+        "packageName": "dotenv",
+        "version": "16.4.5",
+        "ecosystem": "npm",
+        "riskScore": 0,
+        "riskCategory": "Low",
+        "confidence": "Medium",
+        "reasons": [
+          "Tidak ada vulnerability yang ditemukan di database OSV untuk versi ini. Package ini tampak aman berdasarkan data yang tersedia saat ini."
+        ],
+        "vulnerabilities": [],
+        "recommendation": "Package \"dotenv\" tidak memiliki vulnerability yang diketahui pada versi ini. Tetap pantau pembaruan secara berkala — rekomendasi umum adalah selalu upgrade ke minor/patch terbaru.",
+        "explanationId": "finding-low"
+      },
+      {
+        "packageName": "typescript",
+        "version": "5.5.2",
+        "ecosystem": "npm",
+        "riskScore": 0,
+        "riskCategory": "Low",
+        "confidence": "Medium",
+        "reasons": [
+          "Tidak ada vulnerability yang ditemukan di database OSV untuk versi ini. Package ini tampak aman berdasarkan data yang tersedia saat ini."
+        ],
+        "vulnerabilities": [],
+        "recommendation": "Package \"typescript\" tidak memiliki vulnerability yang diketahui pada versi ini. Tetap pantau pembaruan secara berkala — rekomendasi umum adalah selalu upgrade ke minor/patch terbaru.",
+        "explanationId": "finding-low"
+      },
+      {
+        "packageName": "nodemon",
+        "version": "3.1.4",
+        "ecosystem": "npm",
+        "riskScore": 0,
+        "riskCategory": "Low",
+        "confidence": "Medium",
+        "reasons": [
+          "Tidak ada vulnerability yang ditemukan di database OSV untuk versi ini. Package ini tampak aman berdasarkan data yang tersedia saat ini."
+        ],
+        "vulnerabilities": [],
+        "recommendation": "Package \"nodemon\" tidak memiliki vulnerability yang diketahui pada versi ini. Tetap pantau pembaruan secara berkala — rekomendasi umum adalah selalu upgrade ke minor/patch terbaru.",
+        "explanationId": "finding-low"
+      }
+    ]
+  },
+  "message": "safe-package.json berhasil di-scan (data demo). 8 dependency diperiksa, tidak ada vulnerability yang diketahui."
+}
