@@ -55,7 +55,7 @@ export type OsvDepResult = {
 
 async function fetchBatch(
   queries: OsvPackageQuery[],
-  timeoutMs: number
+  timeoutMs: number,
 ): Promise<OsvQueryResult[]> {
   const signal = AbortSignal.timeout(timeoutMs);
 
@@ -86,7 +86,7 @@ async function fetchBatch(
  */
 export async function queryOsv(
   deps: ParsedDependency[],
-  options: { timeoutMs?: number } = {}
+  options: { timeoutMs?: number } = {},
 ): Promise<OsvDepResult[]> {
   const timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
   const results: OsvDepResult[] = new Array(deps.length);
@@ -119,10 +119,14 @@ export async function queryOsv(
     try {
       batchResults = await fetchBatch(batchQueries, timeoutMs);
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "OSV query gagal";
+      const message = err instanceof Error ? err.message : "OSV query gagal";
       for (const idx of batchIndices) {
-        results[idx] = { dep: deps[idx], vulns: [], skipped: false, error: message };
+        results[idx] = {
+          dep: deps[idx],
+          vulns: [],
+          skipped: false,
+          error: message,
+        };
       }
       continue;
     }

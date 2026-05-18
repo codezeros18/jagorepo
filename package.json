@@ -8,6 +8,7 @@
     "server"
   ],
   "scripts": {
+    "dev": "concurrently --names api,web --prefix-colors cyan,magenta \"npm run dev:api\" \"npm run dev:web\"",
     "dev:web": "npm run dev --workspace=web",
     "dev:api": "npm run dev --workspace=server",
     "build:web": "npm run build --workspace=web",
@@ -21,5 +22,8 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }
