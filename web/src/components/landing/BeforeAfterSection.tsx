@@ -29,10 +29,10 @@ const AFTER = {
 
 function categoryColor(cat: string) {
   switch (cat) {
-    case "Critical": return { text: "text-red-600",    bg: "bg-red-50",    border: "border-red-200"    };
-    case "High":     return { text: "text-orange-600", bg: "bg-orange-50", border: "border-orange-200" };
-    case "Medium":   return { text: "text-amber-600",  bg: "bg-amber-50",  border: "border-amber-200"  };
-    default:         return { text: "text-emerald-700", bg: "bg-emerald-50", border: "border-emerald-200" };
+    case "Critical": return { text: "text-red-400",     bg: "bg-red-500/10",     border: "border-red-500/30"     };
+    case "High":     return { text: "text-orange-400",  bg: "bg-orange-500/10",  border: "border-orange-500/30"  };
+    case "Medium":   return { text: "text-amber-400",   bg: "bg-amber-500/10",   border: "border-amber-500/30"   };
+    default:         return { text: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/30" };
   }
 }
 
@@ -41,7 +41,7 @@ function ScoreDisplay({ score, category }: { score: number; category: string }) 
   return (
     <div className={`flex flex-col items-center rounded-2xl border-2 ${c.border} ${c.bg} px-6 py-5`}>
       <p className={`text-5xl font-extrabold tabular-nums ${c.text}`}>{score}</p>
-      <p className="mt-0.5 text-sm text-zinc-400">/100</p>
+      <p className="mt-0.5 text-sm text-zinc-500">/100</p>
       <span className={`mt-2 rounded-md px-2 py-0.5 text-xs font-semibold ${c.text} ${c.bg} border ${c.border}`}>
         {category}
       </span>
@@ -53,13 +53,13 @@ function FindingRow({ name, version, category, vulns }: typeof BEFORE.findings[0
   const c = categoryColor(category);
   const isSafe = vulns === 0;
   return (
-    <div className="flex items-center justify-between gap-3 rounded-lg border border-zinc-100 bg-white px-3 py-2 shadow-sm">
+    <div className="flex items-center justify-between gap-3 rounded-lg border border-zinc-800 bg-zinc-800/50 px-3 py-2">
       <div className="flex items-center gap-2 min-w-0">
-        <code className="text-xs font-semibold text-zinc-800 truncate">{name}</code>
-        <code className="hidden sm:block text-xs text-zinc-400">v{version}</code>
+        <code className="text-xs font-semibold text-zinc-200 truncate">{name}</code>
+        <code className="hidden sm:block text-xs text-zinc-500">v{version}</code>
       </div>
       {isSafe ? (
-        <span className="shrink-0 rounded-md px-2 py-0.5 text-xs font-medium text-emerald-700 bg-emerald-50 border border-emerald-200">
+        <span className="shrink-0 rounded-md px-2 py-0.5 text-xs font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/30">
           Aman
         </span>
       ) : (
@@ -80,12 +80,10 @@ function ScanCard({
   accent: "red" | "emerald";
   data: typeof BEFORE;
 }) {
-  const headerBg = accent === "red"
-    ? "bg-red-600"
-    : "bg-emerald-600";
+  const headerBg = accent === "red" ? "bg-red-600" : "bg-emerald-600";
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 shadow-sm">
+    <div className="flex flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900">
       {/* Card header */}
       <div className={`${headerBg} px-5 py-3`}>
         <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
@@ -100,12 +98,12 @@ function ScanCard({
           <ScoreDisplay score={data.riskScore} category={data.category} />
           <div className="space-y-2 text-sm">
             <div>
-              <p className="text-xs text-zinc-400">Total Dependency</p>
-              <p className="font-bold text-zinc-900">{data.totalDeps} packages</p>
+              <p className="text-xs text-zinc-500">Total Dependency</p>
+              <p className="font-bold text-white">{data.totalDeps} packages</p>
             </div>
             <div>
-              <p className="text-xs text-zinc-400">Vulnerable</p>
-              <p className={`font-bold ${data.vulnDeps > 0 ? "text-red-600" : "text-emerald-600"}`}>
+              <p className="text-xs text-zinc-500">Vulnerable</p>
+              <p className={`font-bold ${data.vulnDeps > 0 ? "text-red-400" : "text-emerald-400"}`}>
                 {data.vulnDeps === 0 ? "Tidak ada" : `${data.vulnDeps} packages`}
               </p>
             </div>
@@ -114,7 +112,7 @@ function ScanCard({
 
         {/* Findings preview */}
         <div className="space-y-1.5">
-          <p className="text-xs font-semibold uppercase tracking-wide text-zinc-400">
+          <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
             Package yang dicek
           </p>
           {data.findings.map((f) => (
