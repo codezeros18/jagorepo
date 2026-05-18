@@ -89,7 +89,8 @@ export async function getScanResult(scanId: string) {
 export async function generateReport(data: UploadScanResponse): Promise<Blob> {
   let res: Response;
   try {
-    res = await fetch(`${API_BASE_URL}/api/report`, {
+    // Uses Next.js API route — works on Vercel without a separate Express server
+    res = await fetch("/api/report", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

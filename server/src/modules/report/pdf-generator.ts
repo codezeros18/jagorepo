@@ -98,7 +98,8 @@ function formatDate(iso: string): string {
   }
 }
 
-function truncate(str: string, max: number): string {
+function truncate(str: string | undefined | null, max: number): string {
+  if (!str) return "—";
   return str.length > max ? str.slice(0, max - 1) + "…" : str;
 }
 
@@ -184,7 +185,7 @@ function ensureSpace(doc: PDFKit.PDFDocument, needed: number) {
 
 // ── Main generator ────────────────────────────────────────────────────────────
 
-export function generatePdfReport(data: ReportData, output: Writable): void {
+export function generatePdfReport(data: ReportData, output: Writable): PDFKit.PDFDocument {
   const doc = new PDFDocument({ margin: MARGIN, size: "A4", bufferPages: true });
   doc.pipe(output);
 
@@ -343,12 +344,12 @@ export function generatePdfReport(data: ReportData, output: Writable): void {
         for (const v of f.vulnerabilities) {
           ensureSpace(doc, 30);
           doc.font("Helvetica-Bold").fontSize(8).fillColor(riskColor(f.riskCategory))
-            .text(`• ${v.id}`, MARGIN + 14, doc.y, { lineBreak: false, width: 120 });
+            .text(`• ${v.id ?? "—"}`, MARGIN + 14, doc.y, { lineBreak: false, width: 120 });
           doc.font("Helvetica").fontSize(8).fillColor(COLOR.muted)
             .text(`  ${severityLabel(v.severity)}`, { lineBreak: false });
           doc.moveDown(0.15);
           doc.font("Helvetica").fontSize(8).fillColor(COLOR.text)
-            .text(truncate(v.summary, 120), MARGIN + 22, doc.y, { width: CONTENT_W - 22 });
+            .text(truncate(v.summary ?? "", 120), MARGIN + 22, doc.y, { width: CONTENT_W - 22 });
           doc.moveDown(0.3);
         }
       }
@@ -444,4 +445,5 @@ export function generatePdfReport(data: ReportData, output: Writable): void {
   }
 
   doc.end();
+  return doc;
 }

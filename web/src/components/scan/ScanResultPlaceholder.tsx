@@ -238,7 +238,7 @@ export function ScanResultDashboard({ data, onScanAnother }: Props) {
       const a = document.createElement("a");
       const safeName = fileName.replace(/[^a-z0-9_.-]/gi, "_").replace(/\.json$/i, "");
       a.href = url;
-      a.download = `jagarepoo-report-${safeName}.pdf`;
+      a.download = `jagarepo-report-${safeName}.pdf`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);

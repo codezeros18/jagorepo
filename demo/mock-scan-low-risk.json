@@ -3,7 +3,7 @@
   "fileName": "safe-package.json",
   "ecosystem": "npm",
   "fileSize": 498,
-  "hasLockfile": false,
+  "hasLockfile": true,
   "warnings": [],
   "scan": {
     "scanId": "demo-low-risk-2026",

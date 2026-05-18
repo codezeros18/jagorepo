@@ -19,14 +19,37 @@ reportRouter.post("/", (req: Request, res: Response) => {
     return;
   }
 
+  if (!Array.isArray(body.scan.findings)) {
+    res.status(400).json({
+      error: "Data findings tidak valid. Ulangi scan dan coba unduh laporan kembali.",
+      code: "INVALID_FINDINGS_DATA",
+    });
+    return;
+  }
+
+  if (!body.scan.scannedAt) {
+    res.status(400).json({
+      error: "Data scan tidak lengkap — tanggal scan tidak ditemukan.",
+      code: "INVALID_REPORT_DATA",
+    });
+    return;
+  }
+
   const safeFileName = body.fileName.replace(/[^a-z0-9_.-]/gi, "_").replace(/\.json$/i, "");
-  const pdfFileName = `jagarepoo-report-${safeFileName}.pdf`;
+  const pdfFileName = `jagarepo-report-${safeFileName}.pdf`;
 
   res.setHeader("Content-Type", "application/pdf");
   res.setHeader("Content-Disposition", `attachment; filename="${pdfFileName}"`);
 
   try {
-    generatePdfReport(body, res);
+    const doc = generatePdfReport(body, res);
+
+    // Catch stream-level errors that happen after headers are already sent
+    doc.on("error", (err: Error) => {
+      console.error("[JagaRepo] PDF stream error:", err.message);
+      // Headers already sent — can only destroy the connection
+      if (!res.destroyed) res.destroy();
+    });
   } catch (err) {
     console.error("[JagaRepo] PDF generation error:", err);
     if (!res.headersSent) {
