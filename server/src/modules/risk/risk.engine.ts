@@ -8,22 +8,23 @@ import type {
 } from "../../types/index.js";
 import type { ParseSummary } from "../parser/parser.orchestrator.js";
 import type { OsvScanSummary, OsvScanEntry } from "../scanner/osv.scanner.js";
-import { checkSuspicious, type SuspiciousSignal } from "./suspicious.heuristic.js";
 import {
-  buildReasons,
-  buildRecommendation,
-} from "./explanation.js";
+  checkSuspicious,
+  type SuspiciousSignal,
+} from "./suspicious.heuristic.js";
+import { buildReasons, buildRecommendation } from "./explanation.js";
 
 // ── Scoring constants (documented, matches TASK_07 spec) ─────────────────────
 
 const SCORE = {
   CRITICAL: 40,
   HIGH: 30,
+  MODERATE: 20,
   MEDIUM: 15,
   LOW: 5,
-  UNKNOWN_VULN: 10,    // vuln exists but severity not determined
-  UNKNOWN_VERSION: 8,  // dep was skipped (no version) — uncertainty penalty
-  SUSPICIOUS: 15,      // heuristic signal (not a confirmed vuln)
+  UNKNOWN_VULN: 10, // vuln exists but severity not determined
+  UNKNOWN_VERSION: 8, // dep was skipped (no version) — uncertainty penalty
+  SUSPICIOUS: 15, // heuristic signal (not a confirmed vuln)
   MISSING_LOCKFILE: 10, // project-level: lockfile absent
 } as const;
 
@@ -32,11 +33,18 @@ const SCORE = {
 function vulnSeverityScore(severity?: string): number {
   if (!severity) return SCORE.UNKNOWN_VULN;
   switch (severity.toUpperCase()) {
-    case "CRITICAL": return SCORE.CRITICAL;
-    case "HIGH":     return SCORE.HIGH;
-    case "MEDIUM":   return SCORE.MEDIUM;
-    case "LOW":      return SCORE.LOW;
-    default:         return SCORE.UNKNOWN_VULN;
+    case "CRITICAL":
+      return SCORE.CRITICAL;
+    case "HIGH":
+      return SCORE.HIGH;
+    case "MODERATE":
+      return SCORE.MODERATE;
+    case "MEDIUM":
+      return SCORE.MEDIUM;
+    case "LOW":
+      return SCORE.LOW;
+    default:
+      return SCORE.UNKNOWN_VULN;
   }
 }
 
@@ -50,20 +58,20 @@ function toCategory(score: number): RiskCategory {
 function toConfidence(
   vulns: NormalizedVulnerability[],
   suspicious: SuspiciousSignal[],
-  skipped: boolean
+  skipped: boolean,
 ): Confidence {
-  if (vulns.length > 0) return "High";   // known CVE from OSV database
+  if (vulns.length > 0) return "High"; // known CVE from OSV database
   if (suspicious.length > 0) return "Low"; // heuristic only
-  if (skipped) return "Low";              // no version, can't verify
-  return "Medium";                        // checked OSV, found nothing
+  if (skipped) return "Low"; // no version, can't verify
+  return "Medium"; // checked OSV, found nothing
 }
 
 // ── Per-package scoring ───────────────────────────────────────────────────────
 
 type PackageScore = {
   score: number;
-  vulnScore: number;       // contribution from known vulns only
-  heuristicScore: number;  // contribution from heuristic only
+  vulnScore: number; // contribution from known vulns only
+  heuristicScore: number; // contribution from heuristic only
   suspicious: SuspiciousSignal[];
 };
 
@@ -88,7 +96,6 @@ function scorePackage(entry: OsvScanEntry): PackageScore {
   return { score: total, vulnScore, heuristicScore, suspicious };
 }
 
-
 function explanationId(score: number, hasSuspicious: boolean): string {
   if (hasSuspicious && score < 15) return "finding-suspicious";
   const cat = toCategory(score);
@@ -111,7 +118,7 @@ function explanationId(score: number, hasSuspicious: boolean): string {
 export function computeRiskFindings(
   parseSummary: ParseSummary,
   osvScan: OsvScanSummary,
-  scanId: string
+  scanId: string,
 ): ScanResult {
   const findings: RiskFinding[] = [];
   let cumulativeScore = 0;
@@ -126,10 +133,19 @@ export function computeRiskFindings(
       ecosystem: entry.ecosystem as Ecosystem,
       riskScore: score,
       riskCategory: toCategory(score),
-      confidence: toConfidence(entry.vulnerabilities, suspicious, entry.skipped),
+      confidence: toConfidence(
+        entry.vulnerabilities,
+        suspicious,
+        entry.skipped,
+      ),
       reasons: buildReasons(entry, suspicious, parseSummary.hasLockfile),
       vulnerabilities: entry.vulnerabilities,
-      recommendation: buildRecommendation(entry, suspicious, score, entry.ecosystem),
+      recommendation: buildRecommendation(
+        entry,
+        suspicious,
+        score,
+        entry.ecosystem,
+      ),
       explanationId: explanationId(score, suspicious.length > 0),
     });
   }
